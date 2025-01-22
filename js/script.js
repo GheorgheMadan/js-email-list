@@ -21,15 +21,10 @@ for(let i = 1; i <= 10; i++){
             const email = responseEmail.data.response;
             // // verifico se funziona
             // console.log(email)
-
             // pusho nell'array le mail creando un oggetto
             emailArr.push({mail: email})
-
-            // estrapolo l'oggetto mail
-            const {mail} = emailArr
-            
              // utilizzo innerHTML per stampare in pagina utilizzando l'oggetto estrapolato
-            output.innerHTML += `<li>${mail}</li>`
+            output.innerHTML += `<li>${email}</li>`
         })
         .catch(error =>{
             // codice da eseguire in caso di errore 
