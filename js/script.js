@@ -11,34 +11,30 @@ console.log(output)
 // setto l'endpoint
 const endPoint = 'https://flynn.boolean.careers/exercises/api/random/mail'
 
+// creo un array che contenga le mail 
+const emailArr = []
 // creo un ciclo che mi stampi automaticamente 10 mail
-const numArr = []
-let items = ''
 for(let i = 1; i <= 10; i++){
-    // console.log(endPoint);
-    // const numRandom = generaNumeroRandomRange(1, 10)
-    // numArr.push(numRandom)
-    // items += `<li>${numRandom}</li>`
+    // faccio partire la richiesta Ajax verso l'API per ricevere l'email
      axios.get(endPoint)
         .then(responseEmail =>{
             const email = responseEmail.data.response;
-            console.log(email)
-            output.innerHTML += `<li>${email}</li>`
+            // // verifico se funziona
+            // console.log(email)
+
+            // pusho nell'array le mail creando un oggetto
+            emailArr.push({mail: email})
+
+            // estrapolo l'oggetto mail
+            const {mail} = emailArr
+            
+             // utilizzo innerHTML per stampare in pagina utilizzando l'oggetto estrapolato
+            output.innerHTML += `<li>${mail}</li>`
         })
         .catch(error =>{
             // codice da eseguire in caso di errore 
             console.error(error);
         })
 }
-
-
-
-
-
-
-// FUNZIONE CHE GENERA UN NUMERO DA ... A ...
-function generaNumeroRandomRange(max, min){
-    const numeroGenerato = Math.floor(Math.random() * (max - min + 1)) + min;
-    
-    return numeroGenerato
-}
+// stampo l'array in console per vedere se funziona
+console.log(emailArr);
