@@ -9,6 +9,7 @@ const output = document.getElementById('output')
 console.log(output)
 // seleziono il pulsante 
 const button = document.getElementById('invia')
+const title = document.getElementById('titolo')
 
 // setto l'endpoint
 const endPoint = 'https://flynn.boolean.careers/exercises/api/random/mail'
@@ -20,7 +21,7 @@ let emailArr = []
 console.log(emailArr);
 
 button.addEventListener('click', () =>{
-    
+
     // Reset dell'array e dell'output ad ogni clic
     emailArr = []; // Resetto l'array delle email
     output.innerHTML = ''; // Svuoto il contenuto della lista HTML
@@ -36,11 +37,19 @@ for(let i = 1; i <= 10; i++){
             // pusho nell'array le mail creando un oggetto
             emailArr.push({mail: email})
              // utilizzo innerHTML per stampare in pagina utilizzando l'oggetto estrapolato
-            output.innerHTML += `<li>${email}</li>`
+            output.innerHTML += `<li class="border rounded fs-5 list-unstyled p-2 bg-button text-white shadow fw-bold">${email}</li>`
         })
         .catch(error =>{
             // codice da eseguire in caso di errore 
             console.error(error);
         })
 }
+    if(button.innerHTML === 'GENERA'){
+        button.innerHTML = 'RIGENERA'
+        title.classList.remove('d-none');
+        title.classList.add('d-inline');
+    } else {
+        button.classList.remove('btn-warning');
+        button.classList.add('btn-primary');
+    }
 });
